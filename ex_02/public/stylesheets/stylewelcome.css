@@ -49,3 +49,15 @@ body, html {
     margin: auto;
     width: 40%;
   }
+
+    a{
+      color: white;
+    }
+
+    a:hover{
+      color: rgb(136, 149, 136);
+      text-decoration: none;
+    }
+    .or{
+      
+    }
