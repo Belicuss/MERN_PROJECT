@@ -3,7 +3,9 @@ const app = express()
 app.set('view engine', 'ejs')
 var bodyParser = require("body-parser");
 var sha1 = require('sha1');
+/* var JSAlert = require("js-alert"); */
 const mongoose = require('mongoose');
+var session = require('express-session')
 mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: true }, function (err, dob) {
 
     if (err) {
@@ -14,6 +16,19 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
         console.log('Connection successfull.');
     }
     var db = mongoose.connection;
+
+    app.use(session({
+        secret: 'ssshhhhh',
+        cookie: {
+            maxAge: 6000000000,// 1 week
+            secure: false,
+        },
+        // * https://www.npmjs.com/package/express-session#resave
+        // * https://www.npmjs.com/package/express-session#saveuninitialized
+        resave: true,
+        saveUninitialized: true
+    }));
+
 
     /*______________________________________________________*/
 
@@ -31,6 +46,7 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
     }));
 
     app.post('/sign_up', function (req, res) {
+        let id = db.collection('register').find().Count() + 1;
         var login = req.body.login;
         var email = req.body.email;
         var password = req.body.password;
@@ -66,24 +82,51 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
 
 
     app.post('/login_up', function (req, res) {
+        sess = req.session;
         var email = req.body.email;
-        var password = req.body.password;
-        var password = sha1(password);
+        var password = sha1(req.body.password);
+        sess.email = req.body.email;
 
         db.collection('register').findOne({ email: email, password: password }, function (err, data) {
             if (err) {
                 console.log(err);
                 return res.status(504).send(err);
             }
-            if (!user) {
+            if (!data) {
                 return res.status(400).send(err);
             }
+
+            console.log(data);
             // res.status(200).send();
-            return res.render('connected', { data: data });
+            return res.render('pages/welcome', { data: data });
             // return res.status(200).send();
         })
-
-        return res.render('pages/welcome');
     })
+    /*     app.get('/admin', function (req, res) {
+            sess = req.session;
+            if (sess.email) {
+                res.write('< h1 > Hello ' + sess.email + '</h1 >');
+                res.end('<a href="+">Logout</a>');
+            }
+            else {
+                res.write('< h1 > Please login first.</h1 >');
+                res.end('<a href="+">Login</a>');
+            }
+    
+        });
+    
+        app.get('/logout', function (req, res) {
+    
+            req.session.destroy(function (err) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    res.redirect('/');
+                }
+            });
+        });
+     */
+
     app.listen(4242)
 });
