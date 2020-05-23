@@ -4,7 +4,7 @@ body, html {
   
   .bgimg {
     /* Background image */
-    background-image: url('/images/forest.jpg');
+    background-image: url('/images/boutique.jpg');
     /* Full-screen */
     height: 100%;
     /* Center the background image */
@@ -62,4 +62,39 @@ body, html {
     input[type=submit] {
       background: transparent;
       border: none;
+  }
+  .middle-bout{
+      color: black;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .black{
+    background-color: black;
+  }
+  .product{
+    color: black;
+    font-size: 61%;
+    text-align: -webkit-center;
+    position: relative;
+    top: 32%;
+    
+  }
+  ul {
+columns: 2;
+  }
+  ul li {
+    list-style-type: none;
+    list-style-position: inside;
+    -webkit-column-break-inside: avoid;
+              page-break-inside: avoid;
+                   break-inside: avoid;
+  }
+  .btn-danger{
+      color : #6f6b6b;
+  }
+  .btn-danger:hover{
+      background-color: cadetblue;
   }

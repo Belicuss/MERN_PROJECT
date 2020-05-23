@@ -97,11 +97,44 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
             }
 
             console.log(data);
-            // res.status(200).send();
+            
             return res.render('pages/welcome', { data: data });
-            // return res.status(200).send();
         })
     })
+    
+    app.get('/boutique', function (req, res){
+    db.collection('boutique').find({}).toArray(function (err, boutique, ){
+        if (err) {
+            console.log(err);
+        }
+        if(!boutique){
+            console.log('0 articles found');
+        }
+        console.log(boutique);
+        
+        return res.render('pages/boutique', { boutique: boutique }); 
+        
+    });
+});
+    app.get('/boutique/:id_product', function (req,res){
+        res.render('pages/articles', {id: req.params.id_product})
+        id = req.params.id_product;
+
+        db.collection('boutique').find({id_product}).toArray(function (err, arti){
+            if (err) {
+                console.log(err);
+            }
+            if(arti != id){
+                console.log('0 articl found at this id');
+            }
+            console.log(arti);
+            return res.render('pages/articles', { arti: arti });
+        });
+    })
+    app.listen(4242)
+});
+
+
     /*     app.get('/admin', function (req, res) {
             sess = req.session;
             if (sess.email) {
@@ -114,19 +147,15 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
             }
     
         });
-    
-        app.get('/logout', function (req, res) {
+    */
+    /*     app.get('/logout', function (req, res) {
     
             req.session.destroy(function (err) {
                 if (err) {
                     console.log(err);
                 }
                 else {
-                    res.redirect('/');
+                    res.redirect('/pages/login');
                 }
             });
-        });
-     */
-
-    app.listen(4242)
-});
+        }); */
