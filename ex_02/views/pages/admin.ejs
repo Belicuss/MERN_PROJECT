@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Signup Form</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="stylesheets/styleboutique.css" rel="stylesheet" type="text/css">
+	</head>
+	<style>
+		body,
+		html {
+			height: 100%
+		}
+
+		.bgimg {
+			/* Background image */
+			background-image: url('/images/blackwh.jpeg');
+			/* Full-screen */
+			height: 100%;
+			/* Center the background image */
+			background-position: center;
+			/* Scale and zoom in the image */
+			background-size: cover;
+			/* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+			position: relative;
+			/* Add a white text color to all elements inside the .bgimg container */
+			color: white;
+			/* Add a font */
+			font-family: "Courier New", Courier, monospace;
+			/* Set the font-size to 25 pixels */
+			font-size: 25px;
+		}
+
+		/* Position text in the top-left corner */
+		.topleft {
+			position: absolute;
+			top: 0;
+			left: 16px;
+		}
+
+		/* Position text in the bottom-left corner */
+		.bottomleft {
+			position: absolute;
+			bottom: 0;
+			left: 16px;
+		}
+
+		/* Position text in the middle */
+		.middle {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+		}
+
+		/* Style the <hr> element */
+		hr {
+			margin: auto;
+			width: 40%;
+		}
+
+		a {
+			color: white;
+		}
+
+		a:hover {
+			color: rgb(136, 149, 136);
+			text-decoration: none;
+		}
+
+		input[type=submit] {
+			background: transparent;
+			border: none;
+		}
+		.middle-bout {
+			color: black;
+			position: absolute;
+			top: 18%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			text-align: center;
+		}
+		.black {
+			background-color: black;
+		}
+		a {
+			color: #866868;
+		}
+		.white {
+			background-color: white;
+			width: 15%;
+			margin-left: -4%;
+		}
+		.product {
+			color: black;
+			font-size: 61%;
+			text-align: -webkit-center;
+			position: relative;
+			top: 32%;
+		}
+		.mmh {
+			color: rgb(187, 183, 183);
+			font-size: medium;
+			position: relative;
+			top: 96%;
+		}
+		.admiform {
+			margin-left: 5%;
+		}
+	</style>
+	<body>
+		<div class="bgimg">
+			<div class="topleft"></div>
+			<div class="middle-bout">
+				<h1>A D D
+					<br>
+					N E W
+					<br>
+				</h1>
+				<hr class="black"></div>
+			<p class="mmh">You don't look like an admin if you want my opinion 🤷🏼‍♀️</p>
+			<div class="product">
+				<form action="/add" method="post" name="add" class="admiform">
+					<input type="text" name="mailadmin" id="" placeholder="Your amazing email">
+					<input type="password" name="passwordadmin" id="" placeholder="Your wonderful password">
+					<input type="submit" id="submitDetails" name="submitDetails" value="Submit"/><br>
+				</form>
+			</div>
+			<footer>
+				<div class="footer"></div>
+			</footer>
+		</body>
+	</body>
+</html>

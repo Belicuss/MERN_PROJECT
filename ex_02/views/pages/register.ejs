@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>
-        Signup Form</title>
+	<head>
+		<title>
+			Signup Form</title>
 
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+		<link href="stylesheets/style.css" rel="stylesheet" type="text/css">
 
-</head>
+	</head>
 
 
-<body>
+	<body>
 
-    <br>
-    <br>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 main">
-                <form action="/sign_up" method="post">
-                    <h3>
-                        🌼 Créez votre compte 🌼
-                    </h3>
-                    <input class="box" type="text" name="login" id="login" placeholder="Nom d'utilisateur"
-                        required /><br>
+		<br>
+		<br>
+		<br>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 main">
+					<form action="/sign_up" method="post">
+						<h3>
+							🌼 Créez votre compte 🌼
+						</h3>
+						<input class="box" type="text" name="login" id="login" placeholder="Nom d'utilisateur" required/><br>
 
-                    <input class="box" type="email" name="email" id="email" placeholder="E-Mail " required /><br>
+						<input class="box" type="email" name="email" id="email" placeholder="E-Mail " required/><br>
 
-                    <input class="box" type="password" name="password" id="firstpasswordname"
-                        placeholder="Mot de passe " required /><br>
+						<input class="box" type="password" name="password" id="firstpasswordname" placeholder="Mot de passe " required/><br>
 
-                    <input class="box" type="passwordConfirm" name="passwordConfirm" id="Confirmer votre mot de passe"
-                        placeholder="Confirmer votre mot de passe" required /><br>
+						<input class="box" type="password" name="passwordConfirm" id="Confirmer votre mot de passe" placeholder="Confirmer votre mot de passe" required/><br>
 
-                    <input type="submit" id="submitDetails" name="submitDetails" value="Submit" /><br>
-                </form>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
-    </div>
-</body>
+						<input type="submit" id="submitDetails" name="submitDetails" value="Submit"/><br>
+					</form>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+		</div>
+	</body>
 
 </html>

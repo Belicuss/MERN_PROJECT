@@ -46,7 +46,7 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: fa
     }));
 
     app.post('/sign_up', function (req, res) {
-        let id = db.collection('register').find().Count() + 1;
+        /* let id = db.collection('register').find().Count() + 1; */
         var login = req.body.login;
         var email = req.body.email;
         var password = req.body.password;
@@ -96,52 +96,92 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: fa
                 return res.status(400).send(err);
             }
 
-            console.log(data);
-            
+            /* console.log(data); */
+
             return res.render('pages/welcome', { data: data });
         })
     })
-    
-    app.get('/boutique', function (req, res){
-    db.collection('boutique').find({}).toArray(function (err, boutique, ){
-        if (err) {
-            console.log(err);
-        }
-        if(!boutique){
-            console.log('0 articles found');
-        }
-        console.log(boutique);
-        
-        return res.render('pages/boutique', { boutique: boutique }); 
-        
+
+    app.get('/boutique', function (req, res) {
+        db.collection('boutique').find({}).toArray(function (err, boutique, ) {
+            if (err) {
+                console.log(err);
+            }
+            if (!boutique) {
+                console.log('0 articles found');
+            }
+            /*  console.log(boutique); */
+
+            return res.render('pages/boutique', { boutique: boutique });
+
+        });
     });
-});
-app.get('/boutique/:id', function(req, res) {
-    console.log(req.params.id)
-    
-    db.collection('boutique').findOne({id_product: parseInt(req.params.id)} ,function (err, produit) {
-        if (err) {
-            res.send("Ce produit n'existe pas");
-        } else {
-            console.log(produit)
-            
-            res.render('pages/articles', {produit: produit});
-        }
+    app.get('/boutique/:id', function (req, res) {
+        /* console.log(req.params.id) */
+
+        db.collection('boutique').findOne({ id_product: parseInt(req.params.id) }, function (err, produit) {
+            if (err) {
+                res.send("Ce produit n'existe pas");
+            } else {
+                /* console.log(produit) */
+
+                res.render('pages/articles', { produit: produit });
+            }
+        })
     })
-})
+
+    app.get('/admin', function (req, res) {
+        res.render('pages/admin')
+    })
+
+    app.post('/add', function (req, res) {
+        sess = req.session;
+        var email = req.body.mailadmin;
+        var password = sha1(req.body.passwordadmin);
+        sess.email = req.body.email;
+
+        db.collection('register').findOne({ admin: true, email: email, password: password }, function (err, data) {
+            if (err) {
+                console.log(err);
+                return res.status(504).send(err);
+            }
+            if (!data) {
+                return res.status(400).send(err);
+            }
+            console.log(data);
+            return res.render('pages/add', { data: data });
+        })
+    })
+    app.post('/addart', function (req, res) {
+        /* let id = db.collection('register').find().Count() + 1; */
+        var title = req.body.title;
+        var descriptions = req.body.descriptions;
+        var price = req.body.price;
+        var id_product = req.body.id_product;
+
+        var data = {
+            "title": title,
+            "descriptions": descriptions,
+            "price": price,
+            "id_product": id_product,
+
+        }
+        db.collection('boutique').insertOne(data, function (err, collection) {
+            if (err) {
+                console.log(" Failed to save the collection.");
+                return res.status(400).send(err);
+            }
+            else {
+                console.log("Collection saved !");
+            }
+        });
+        return res.render('pages/admin');
+    })
+
+    app.get('/login', function (req, res) {
+        res.render('pages/login')
+    })
+
+
     app.listen(4242);
 });
-
-
-  
-    /*     app.get('/logout', function (req, res) {
-    
-            req.session.destroy(function (err) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    res.redirect('/pages/login');
-                }
-            });
-        }); */

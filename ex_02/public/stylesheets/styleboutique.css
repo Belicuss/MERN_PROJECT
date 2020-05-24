@@ -80,6 +80,7 @@ body, html {
     text-align: -webkit-center;
     position: relative;
     top: 32%;
+    left: -1.2%;
     
   }
   ul {
@@ -100,4 +101,24 @@ columns: 3;
   }
   a {
     color: #866868;
+  }
+  .addAdmin{
+    color: white;
+  }
+  .addAdmin2{
+    margin-left: -4%;
+  }
+.footer{
+    margin-left: 48.5%;
+    margin-top: 24%;
+  }
+  .white{
+    background-color: white;
+    width: 15%;
+    margin-left: -4%;
+  }  
+  .only{
+    
+    margin-left: -4%;
+
   }
