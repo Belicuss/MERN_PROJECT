@@ -31,16 +31,16 @@
 						<li><%- boutique[key]['title'] %>
 							<p>
 								<%- boutique[key]['price'] %>$</p>
-							<form action="/boutique/<%- boutique[key]['id_product'] %>" method="get">
-								<input type="hidden" name="id" id="id" value="<%- boutique[key]['id_product'] %>"/>
-								<input type="submit" class="delete btn btn-danger" value="See product">
-							</form><br>
-							<br>
-						<% } %>
-					</li>
-				</ul>
-			</div>
-			<div class="bottomleft"></div>
+							<btn>
+								<a href="boutique/<%= boutique[key]['id_product'] %>">Voir le produit</a>
+							</btn>
+						</li>
+					</form><br>
+
+					<br>
+				<% } %>
+
+			</ul>
 		</body>
 	</body>
-</html></div></body></html>
+</html>

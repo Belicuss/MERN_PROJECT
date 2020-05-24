@@ -6,7 +6,7 @@ var sha1 = require('sha1');
 /* var JSAlert = require("js-alert"); */
 const mongoose = require('mongoose');
 var session = require('express-session')
-mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: true }, function (err, dob) {
+mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: false }, function (err, dob) {
 
     if (err) {
         console.log('Connection failed.');
@@ -116,38 +116,24 @@ mongoose.connect('mongodb://localhost:27042/mern-pool', { useUnifiedTopology: tr
         
     });
 });
-    app.get('/boutique/:id_product', function (req,res){
-        res.render('pages/articles', {id: req.params.id_product})
-        id = req.params.id_product;
-
-        db.collection('boutique').find({id_product}).toArray(function (err, arti){
-            if (err) {
-                console.log(err);
-            }
-            if(arti != id){
-                console.log('0 articl found at this id');
-            }
-            console.log(arti);
-            return res.render('pages/articles', { arti: arti });
-        });
+app.get('/boutique/:id', function(req, res) {
+    console.log(req.params.id)
+    
+    db.collection('boutique').findOne({id_product: parseInt(req.params.id)} ,function (err, produit) {
+        if (err) {
+            res.send("Ce produit n'existe pas");
+        } else {
+            console.log(produit)
+            
+            res.render('pages/articles', {produit: produit});
+        }
     })
-    app.listen(4242)
+})
+    app.listen(4242);
 });
 
 
-    /*     app.get('/admin', function (req, res) {
-            sess = req.session;
-            if (sess.email) {
-                res.write('< h1 > Hello ' + sess.email + '</h1 >');
-                res.end('<a href="+">Logout</a>');
-            }
-            else {
-                res.write('< h1 > Please login first.</h1 >');
-                res.end('<a href="+">Login</a>');
-            }
-    
-        });
-    */
+  
     /*     app.get('/logout', function (req, res) {
     
             req.session.destroy(function (err) {
